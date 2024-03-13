@@ -1,22 +1,32 @@
 prollingTaskService.class
-m:poll()
-  l: systemResourceMonitorService.log() /** package com.bizon.sbms.server.dti.common.service.task.SystemResourceMonitorService **/
-  l: execute2() ->
+polling 시작
 
-m:execute2() // 해당메서드에서 고객사에서 넘긴 데이터의 상태값을 수정하고 metaInfoList를 받아  handleOutbound 처리
-  l: sqlSessionHandler로 템플릿 가지온다.
-  요건 왜 있는지 잘 이해가 안됨.!
-  DynamicDSContextHolder.clearDynamicDSType(); 
-  DynamicDSContextHolder.setDynamicDSType(systemId);
-  metaInfoList.addAll(grapTargets(systemId)) // MessageMetaInfo List
-
-m:grapTargets(destination)
-  l:DTIInterfaceDTO // paramDto 셋팅 setMessageStatusFlag 값을 N으로 
-  MessageStatusFlag N 인 값을 가지고 온다.! 
-  targetList = dtiInterfaceService.read(paramDto, 100); //100씩이 아닌데.! ㅡㅡ;; 
-
-  targetList for 문으로 반복문돌려서 update 해줌.! 가지고 list를 
-
-taxInvoiceAdaptingController.handleOutbound(messageMetaInfo);에서 시그널 처리해주는 것으로 보입니다. 
-와 따라가기 드럽게 힘드네.. ㅡㅡ;; 
+  m:poll()
+      l: systemResourceMonitorService.log() /** package com.bizon.sbms.server.dti.common.service.task.SystemResourceMonitorService **/
+      l: execute2() ->
+    
+      m:execute2() // 해당메서드에서 고객사에서 넘긴 데이터의 상태값을 수정하고 metaInfoList를 받아  handleOutbound 처리
+        l: sqlSessionHandler로 템플릿 가지온다.
+        요건 왜 있는지 잘 이해가 안됨.!
+        DynamicDSContextHolder.clearDynamicDSType(); 
+        DynamicDSContextHolder.setDynamicDSType(systemId);
+        metaInfoList.addAll(grapTargets(systemId)) // MessageMetaInfo List
+      
+      m:grapTargets(destination)
+        l:DTIInterfaceDTO // paramDto 셋팅 setMessageStatusFlag 값을 N으로 
+        MessageStatusFlag N 인 값을 가지고 온다.! 
+        targetList = dtiInterfaceService.read(paramDto, 100); //100씩이 아닌데.! ㅡㅡ;; 
+      
+        targetList for 문으로 반복문돌려서 update 해줌.! 가지고 list를 
+      taxInvoiceAdaptingController.handleOutbound(messageMetaInfo);
+      와 따라가기 드럽게 힘드네.. ㅡㅡ;; 
   
+      TaxInvoiceAdaptingController.class
+      m:handleOutbound
+      I:AdaptingService.class adapt
+      C:TaxInvoiceAdaptingService.class
+        m:adapt() 
+
+polling 종료
+
+
