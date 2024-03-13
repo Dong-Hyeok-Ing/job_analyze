@@ -1,0 +1,4 @@
+SystemResourceMonitorService.class // oshi-core 의존성 주입 이걸통해서 운영체제의 정보 확인
+m:log()
+  l: 모든프로세스를 가지고와서 cpu 사용량을 구함... 
+  l: logger를 통해서 기록을 남김
