@@ -44,3 +44,8 @@ compileOnly 'org.projectlombok:lombok'
 /*스케쥴 락*/
 implementation group: 'net.javacrumbs.shedlock', name: 'shedlock-spring', version: '4.12.0'
 implementation group: 'net.javacrumbs.shedlock', name: 'shedlock-provider-jdbc-template', version: '4.12.0'
+
+참고자료
+
+
+https://berrrrr.github.io/programming/2021/01/24/how-to-use-mockwebserver/
